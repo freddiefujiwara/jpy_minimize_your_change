@@ -72,163 +72,77 @@ void main() {
       expect(c.canPay(), true);
     });
 
-    test("minimize", () {
-      //one
-      c.billing = 14;
-      c.increment(Bill.one, 3);
-      c.minimize();
-      expect(c.numberOfBills(Bill.one), 3);
-      expect(c.numberOfPays(Bill.one), 0);
-      c.clear();
-
-      c.billing = 14;
-      c.increment(Bill.one, 4);
-      c.minimize();
-      expect(c.numberOfBills(Bill.one), 0);
-      expect(c.numberOfPays(Bill.one), 4);
-      c.clear();
-
-      c.billing = 14;
-      c.increment(Bill.one, 3);
-      c.increment(Bill.five, 3);
-      c.minimize();
-      expect(c.numberOfBills(Bill.one), 3);
-      expect(c.numberOfPays(Bill.one), 0);
-      expect(c.numberOfBills(Bill.five), 2);
-      expect(c.numberOfPays(Bill.five), 1);
-      c.clear();
-
-      c.billing = 15;
-      c.increment(Bill.one, 6);
-      c.minimize();
-      expect(c.numberOfBills(Bill.one), 1);
-      expect(c.numberOfPays(Bill.one), 5);
-      c.clear();
-
-      c.billing = 16;
-      c.increment(Bill.one, 1);
-      c.minimize();
-      expect(c.numberOfBills(Bill.one), 0);
-      expect(c.numberOfPays(Bill.one), 1);
-      c.clear();
-
-      //ten
-      c.billing = 140;
-      c.increment(Bill.ten, 3);
-      c.minimize();
-      expect(c.numberOfBills(Bill.ten), 3);
-      expect(c.numberOfPays(Bill.ten), 0);
-      c.clear();
-
-      c.billing = 140;
-      c.increment(Bill.ten, 4);
-      c.minimize();
-      expect(c.numberOfBills(Bill.ten), 0);
-      expect(c.numberOfPays(Bill.ten), 4);
-      c.clear();
-
-      c.billing = 140;
-      c.increment(Bill.ten, 3);
-      c.increment(Bill.fifty, 3);
-      c.minimize();
-      expect(c.numberOfBills(Bill.ten), 3);
-      expect(c.numberOfPays(Bill.ten), 0);
-      expect(c.numberOfBills(Bill.fifty), 2);
-      expect(c.numberOfPays(Bill.fifty), 1);
-      c.clear();
-
-      c.billing = 150;
-      c.increment(Bill.ten, 6);
-      c.minimize();
-      expect(c.numberOfBills(Bill.ten), 1);
-      expect(c.numberOfPays(Bill.ten), 5);
-      c.clear();
-
-      c.billing = 160;
-      c.increment(Bill.ten, 1);
-      c.minimize();
-      expect(c.numberOfBills(Bill.ten), 0);
-      expect(c.numberOfPays(Bill.ten), 1);
-      c.clear();
-
-      //oneHundred
-      c.billing = 1400;
-      c.increment(Bill.oneHundred, 3);
-      c.minimize();
-      expect(c.numberOfBills(Bill.oneHundred), 3);
-      expect(c.numberOfPays(Bill.oneHundred), 0);
-      c.clear();
-
-      c.billing = 1400;
-      c.increment(Bill.oneHundred, 4);
-      c.minimize();
-      expect(c.numberOfBills(Bill.oneHundred), 0);
-      expect(c.numberOfPays(Bill.oneHundred), 4);
-      c.clear();
-
-      c.billing = 1400;
-      c.increment(Bill.oneHundred, 3);
-      c.increment(Bill.fiveHundreds, 3);
-      c.minimize();
-      expect(c.numberOfBills(Bill.oneHundred), 3);
-      expect(c.numberOfPays(Bill.oneHundred), 0);
-      expect(c.numberOfBills(Bill.fiveHundreds), 2);
-      expect(c.numberOfPays(Bill.fiveHundreds), 1);
-      c.clear();
-
-      c.billing = 1500;
-      c.increment(Bill.oneHundred, 6);
-      c.minimize();
-      expect(c.numberOfBills(Bill.oneHundred), 1);
-      expect(c.numberOfPays(Bill.oneHundred), 5);
-      c.clear();
-
-      c.billing = 1600;
-      c.increment(Bill.oneHundred, 1);
-      c.minimize();
-      expect(c.numberOfBills(Bill.oneHundred), 0);
-      expect(c.numberOfPays(Bill.oneHundred), 1);
-      c.clear();
-
-
-      //oneThousand
-      c.billing = 14000;
-      c.increment(Bill.oneThousand, 3);
-      c.minimize();
-      expect(c.numberOfBills(Bill.oneThousand), 3);
-      expect(c.numberOfPays(Bill.oneThousand), 0);
-      c.clear();
-
-      c.billing = 14000;
-      c.increment(Bill.oneThousand, 4);
-      c.minimize();
-      expect(c.numberOfBills(Bill.oneThousand), 0);
-      expect(c.numberOfPays(Bill.oneThousand), 4);
-      c.clear();
-
-      c.billing = 14000;
-      c.increment(Bill.oneThousand, 3);
-      c.increment(Bill.fiveThousands, 3);
-      c.minimize();
-      expect(c.numberOfBills(Bill.oneThousand), 3);
-      expect(c.numberOfPays(Bill.oneThousand), 0);
-      expect(c.numberOfBills(Bill.fiveThousands), 2);
-      expect(c.numberOfPays(Bill.fiveThousands), 1);
-      c.clear();
-
-      c.billing = 15000;
-      c.increment(Bill.oneThousand, 6);
-      c.minimize();
-      expect(c.numberOfBills(Bill.oneThousand), 1);
-      expect(c.numberOfPays(Bill.oneThousand), 5);
-      c.clear();
-
-      c.billing = 16000;
+    test("allSubsetsCanBePaid", () {
+      c.billing = 22665;
+      c.increment(Bill.tenThousands, 1);
+      c.increment(Bill.fiveThousands, 2);
       c.increment(Bill.oneThousand, 1);
-      c.minimize();
-      expect(c.numberOfBills(Bill.oneThousand), 0);
-      expect(c.numberOfPays(Bill.oneThousand), 1);
+      c.increment(Bill.fiveHundreds, 3);
+      c.increment(Bill.oneHundred, 1);
+      c.increment(Bill.fifty, 1);
+      c.increment(Bill.ten, 1);
+      c.increment(Bill.five, 1);
+      c.increment(Bill.one, 1);
+      final candidates = c.allSubsetsCanBePaid();
+      expect(candidates.length, 2);
+      expect(candidates, [
+        [0, 1, 1, 1, 1, 3, 1, 2, 1],
+        [1, 1, 1, 1, 1, 3, 1, 2, 1]
+      ]);
+    });
+    test("changeToBills", () {
+      List<int> bills = c.changeToBills(10);
+      expect(bills, [0, 0, 1, 0, 0, 0, 0, 0, 0]);
+      bills = c.changeToBills(11);
+      expect(bills, [1, 0, 1, 0, 0, 0, 0, 0, 0]);
+      bills = c.changeToBills(16);
+      expect(bills, [1, 1, 1, 0, 0, 0, 0, 0, 0]);
+      bills = c.changeToBills(4016);
+      expect(bills, [1, 1, 1, 0, 0, 0, 4, 0, 0]);
+      bills = c.changeToBills(5016);
+      expect(bills, [1, 1, 1, 0, 0, 0, 0, 1, 0]);
+    });
+    test("minimize", () {
+      c.billing = 22665;
+      c.increment(Bill.tenThousands, 1);
+      c.increment(Bill.fiveThousands, 2);
+      c.increment(Bill.oneThousand, 1);
+      c.increment(Bill.fiveHundreds, 3);
+      c.increment(Bill.oneHundred, 1);
+      c.increment(Bill.fifty, 1);
+      c.increment(Bill.ten, 1);
+      c.increment(Bill.five, 1);
+      c.increment(Bill.one, 1);
+
+      List<List<int>> minimums = c.minimumPays();
+      expect(minimums.length, 2);
+      expect(minimums[0].length, 9);
+      expect(minimums[1].length, 9);
+      expect(minimums, [
+        [0, 1, 1, 1, 1, 3, 1, 2, 1],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0]
+      ]);
       c.clear();
+
+      c.billing = 756;
+      c.increment(Bill.tenThousands, 1);
+      c.increment(Bill.fiveThousands, 1);
+      c.increment(Bill.oneThousand, 1);
+      c.increment(Bill.fiveHundreds, 0);
+      c.increment(Bill.oneHundred, 3);
+      c.increment(Bill.fifty, 0);
+      c.increment(Bill.ten, 1);
+      c.increment(Bill.five, 0);
+      c.increment(Bill.one, 1);
+
+      minimums = c.minimumPays();
+      expect(minimums.length, 2);
+      expect(minimums[0].length, 9);
+      expect(minimums[1].length, 9);
+      expect(minimums, [
+        [1, 0, 1, 0, 3, 0, 1, 0, 0],
+        [0, 1, 0, 1, 0, 1, 0, 0, 0]
+      ]);
     });
   });
 }

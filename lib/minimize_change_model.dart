@@ -1,5 +1,4 @@
-import 'dart:math';
-
+import 'package:trotter/trotter.dart';
 import 'package:flutter/cupertino.dart';
 
 enum Bill {
@@ -16,13 +15,12 @@ enum Bill {
 
 class MinimizeChangeModel extends ChangeNotifier {
   List<int> _bills = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-  List<int> _pays = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   int _billing = 0;
   MinimizeChangeModel() {
     this.clear();
   }
   void clear() {
-    Bill.values.forEach((b) => this._bills[b.index] = this._pays[b.index] = 0);
+    Bill.values.forEach((b) => this._bills[b.index] = 0);
     this._billing = 0;
     notifyListeners();
   }
@@ -36,94 +34,82 @@ class MinimizeChangeModel extends ChangeNotifier {
     return this._bills[b.index];
   }
 
-  int numberOfPays(Bill b) {
-    return this._pays[b.index];
-  }
-
   int sum() {
-    double sum = 0.0;
+    int sum = 0;
+    final List<int> values = [1, 5, 10, 50, 100, 500, 1000, 5000, 10000];
     Bill.values.forEach((b) {
-      sum += b.index % 2 == 0
-          ? this._bills[b.index] * pow(10, b.index / 2)
-          : this._bills[b.index] * pow(10, (b.index + 1) / 2) / 2;
+      sum += this._bills[b.index] * values[b.index];
     });
-    return sum.round();
+    return sum;
   }
 
-  void minimize() {
-    int rest = this._billing;
-    // one
-    if (this._bills[Bill.one.index] >= rest % 10) {
-      this._pays[Bill.one.index] = rest % 10;
-      this._bills[Bill.one.index] -= rest % 10;
-    } else if (rest % 10 < 5) {
-      if (this._bills[Bill.five.index] > 0) {
-        this._pays[Bill.five.index]++;
-        this._bills[Bill.five.index]--;
+  List<List<int>> allSubsetsCanBePaid() {
+    List<String> candidates = [];
+    final List<int> values = [1, 5, 10, 50, 100, 500, 1000, 5000, 10000];
+    Bill.values.forEach((b) {
+      int value = values[b.index];
+      for (var i = 0; i < this._bills[b.index]; i++) {
+        candidates.add("${i}_$value");
       }
-    } else {
-      if (this._bills[Bill.one.index] >= (rest % 10 - 5)) {
-        this._pays[Bill.one.index] = rest % 10 - 5;
-        this._bills[Bill.one.index] -= rest % 10 - 5;
-      }
-    }
-    rest -= rest % 10;
+    });
+    List<List<int>> subs = [];
+    final subSet = Subsets(candidates);
+    subSet().where((s) {
+      int sum = 0;
+      s.forEach((b) {
+        final match = RegExp("^[0-9]+_([0-9]+)").firstMatch(b);
+        sum += int.parse(match.group(1));
+      });
+      return this._billing <= sum;
+    }).forEach((c) {
+      List<int> pays = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+      c.forEach((b) {
+        final match = RegExp("^[0-9]+_([0-9]+)").firstMatch(b);
+        pays[values.indexOf(int.parse(match.group(1)))]++;
+      });
+      subs.add(pays);
+    });
+    return subs;
+  }
 
-    // ten
-    if (this._bills[Bill.ten.index] >= ((rest % 100) / 10).round()) {
-      this._pays[Bill.ten.index] = ((rest % 100) / 10).round();
-      this._bills[Bill.ten.index] -= ((rest % 100) / 10).round();
-    } else if (((rest % 100) / 10).round() < 5) {
-      if (this._bills[Bill.fifty.index] > 0) {
-        this._pays[Bill.fifty.index]++;
-        this._bills[Bill.fifty.index]--;
-      }
-    } else {
-      if (this._bills[Bill.ten.index] >= (((rest % 100) / 10).round() - 5)) {
-        this._pays[Bill.ten.index] = ((rest % 100) / 10).round() - 5;
-        this._bills[Bill.ten.index] -= ((rest % 100) / 10).round() - 5;
-      }
-    }
-    rest -= rest % 100;
+  List<int> changeToBills(int change) {
+    List<int> bills = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+    final List<int> values = [1, 5, 10, 50, 100, 500, 1000, 5000, 10000];
+    int i = 0;
+    values.reversed.forEach((value) {
+      bills[bills.length - i - 1] = (change / value).floor();
+      change = change % value;
+      i++;
+    });
+    return bills;
+  }
 
-    // hundred
-    if (this._bills[Bill.oneHundred.index] >= ((rest % 1000) / 100).round()) {
-      this._pays[Bill.oneHundred.index] = ((rest % 1000) / 100).round();
-      this._bills[Bill.oneHundred.index] -= ((rest % 1000) / 100).round();
-    } else if (((rest % 1000) / 100).round() < 5) {
-      if (this._bills[Bill.fiveHundreds.index] > 0) {
-        this._pays[Bill.fiveHundreds.index]++;
-        this._bills[Bill.fiveHundreds.index]--;
+  List<List<int>> minimumPays() {
+    int currentBills = 0;
+    this._bills.forEach((v) => currentBills += v);
+    int minimumBills = currentBills;
+    List<int> bestPay = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+    List<int> bestChange = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+    final List<int> values = [1, 5, 10, 50, 100, 500, 1000, 5000, 10000];
+    this.allSubsetsCanBePaid().forEach((c) {
+      int pay = 0;
+      c.forEach((v) => pay += v);
+      int payValue = 0;
+      int i = 0;
+      c.forEach((v) {
+        payValue += v * values[i];
+        i++;
+      });
+      List<int> changes = this.changeToBills(payValue - this._billing);
+      int change = 0;
+      changes.forEach((v) => change += v);
+      if (minimumBills > currentBills - pay + change) {
+        bestPay = c;
+        bestChange = changes;
+        minimumBills = currentBills - pay + change;
       }
-    } else {
-      if (this._bills[Bill.oneHundred.index] >=
-          (((rest % 1000) / 100).round() - 5)) {
-        this._pays[Bill.oneHundred.index] = ((rest % 1000) / 100).round() - 5;
-        this._bills[Bill.oneHundred.index] -= ((rest % 1000) / 100).round() - 5;
-      }
-    }
-    rest -= rest % 1000;
-
-    // thousand
-    if (this._bills[Bill.oneThousand.index] >=
-        ((rest % 10000) / 1000).round()) {
-      this._pays[Bill.oneThousand.index] = ((rest % 10000) / 1000).round();
-      this._bills[Bill.oneThousand.index] -= ((rest % 10000) / 1000).round();
-    } else if (((rest % 10000) / 1000).round() < 5) {
-      if (this._bills[Bill.fiveThousands.index] > 0) {
-        this._pays[Bill.fiveThousands.index]++;
-        this._bills[Bill.fiveThousands.index]--;
-      }
-    } else {
-      if (this._bills[Bill.oneThousand.index] >=
-          (((rest % 10000) / 1000).round() - 5)) {
-        this._pays[Bill.oneThousand.index] =
-            ((rest % 10000) / 1000).round() - 5;
-        this._bills[Bill.oneThousand.index] -=
-            ((rest % 10000) / 1000).round() - 5;
-      }
-    }
-    rest -= rest % 10000;
+    });
+    return [bestPay, bestChange];
   }
 
   bool canPay() => this._billing <= this.sum();

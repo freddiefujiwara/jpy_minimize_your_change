@@ -4,10 +4,10 @@ import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
 void main() {
-  runApp(Calculator());
+  runApp(Home());
 }
 
-class Calculator extends StatelessWidget {
+class Home extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,8 @@ class Calculator extends StatelessWidget {
               appBar: AppBar(
                 title: Text('Japanese bills and coins calculator'),
               ),
-              body: Consumer<MinimizeChangeModel>(builder: (context, model, child) {
+              body: Consumer<MinimizeChangeModel>(
+                  builder: (context, model, child) {
                 final formatter = NumberFormat("#,###");
                 return SafeArea(
                   child: Container(
@@ -38,7 +39,7 @@ class Calculator extends StatelessWidget {
                             children: [
                               Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Text(
                                       "合計${formatter.format(model.sum())} 円",
@@ -57,40 +58,65 @@ class Calculator extends StatelessWidget {
                                       },
                                     ),
                                   ]),
-                              SizedBox(height: 15),
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   RaisedButton(
                                     child: Text("10,000円"),
                                     color: Colors.grey,
                                     textColor: Colors.white,
+                                    onPressed: () {},
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.arrow_upward),
+                                    tooltip: 'Increase volume by 10',
                                     onPressed: () {
                                       model.increment(Bill.tenThousands);
                                     },
                                   ),
-                                  Text("${model.numberOfBills(Bill.tenThousands)} 枚"),
+                                  IconButton(
+                                    icon: Icon(Icons.arrow_downward),
+                                    tooltip: 'Increase volume by 10',
+                                    onPressed: () {
+                                      model.decrement(Bill.tenThousands);
+                                    },
+                                  ),
+                                  Text(
+                                      "${model.numberOfBills(Bill.tenThousands)} 枚"),
                                 ],
                               ),
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   RaisedButton(
                                     child: Text("5,000円"),
                                     color: Colors.grey,
                                     textColor: Colors.white,
+                                    onPressed: () {},
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.arrow_upward),
+                                    tooltip: 'Increase volume by 10',
                                     onPressed: () {
                                       model.increment(Bill.fiveThousands);
                                     },
                                   ),
-                                  Text("${model.numberOfBills(Bill.fiveThousands)} 枚"),
+                                  IconButton(
+                                    icon: Icon(Icons.arrow_downward),
+                                    tooltip: 'Increase volume by 10',
+                                    onPressed: () {
+                                      model.decrement(Bill.fiveThousands);
+                                    },
+                                  ),
+                                  Text(
+                                      "${model.numberOfBills(Bill.fiveThousands)} 枚"),
                                 ],
                               ),
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   RaisedButton(
                                     child: Text("1,000円"),
@@ -100,12 +126,27 @@ class Calculator extends StatelessWidget {
                                       model.increment(Bill.oneThousand);
                                     },
                                   ),
-                                  Text("${model.numberOfBills(Bill.oneThousand)} 枚"),
+                                  IconButton(
+                                    icon: Icon(Icons.arrow_upward),
+                                    tooltip: 'Increase volume by 10',
+                                    onPressed: () {
+                                      model.increment(Bill.oneThousand);
+                                    },
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.arrow_downward),
+                                    tooltip: 'Increase volume by 10',
+                                    onPressed: () {
+                                      model.decrement(Bill.oneThousand);
+                                    },
+                                  ),
+                                  Text(
+                                      "${model.numberOfBills(Bill.oneThousand)} 枚"),
                                 ],
                               ),
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   ButtonTheme(
                                     minWidth: 50.0,
@@ -121,17 +162,30 @@ class Calculator extends StatelessWidget {
                                           style: BorderStyle.solid,
                                         ),
                                       ),
-                                      onPressed: () {
-                                        model.increment(Bill.fiveHundreds);
-                                      },
+                                      onPressed: () {},
                                     ),
                                   ),
-                                  Text("${model.numberOfBills(Bill.fiveHundreds)} 枚"),
+                                  IconButton(
+                                    icon: Icon(Icons.arrow_upward),
+                                    tooltip: 'Increase volume by 10',
+                                    onPressed: () {
+                                      model.increment(Bill.fiveHundreds);
+                                    },
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.arrow_downward),
+                                    tooltip: 'Increase volume by 10',
+                                    onPressed: () {
+                                      model.decrement(Bill.fiveHundreds);
+                                    },
+                                  ),
+                                  Text(
+                                      "${model.numberOfBills(Bill.fiveHundreds)} 枚"),
                                 ],
                               ),
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   ButtonTheme(
                                     minWidth: 40.0,
@@ -147,17 +201,30 @@ class Calculator extends StatelessWidget {
                                           style: BorderStyle.solid,
                                         ),
                                       ),
-                                      onPressed: () {
-                                        model.increment(Bill.oneHundred);
-                                      },
+                                      onPressed: () {},
                                     ),
                                   ),
-                                  Text("${model.numberOfBills(Bill.oneHundred)} 枚"),
+                                  IconButton(
+                                    icon: Icon(Icons.arrow_upward),
+                                    tooltip: 'Increase volume by 10',
+                                    onPressed: () {
+                                      model.increment(Bill.oneHundred);
+                                    },
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.arrow_downward),
+                                    tooltip: 'Increase volume by 10',
+                                    onPressed: () {
+                                      model.decrement(Bill.oneHundred);
+                                    },
+                                  ),
+                                  Text(
+                                      "${model.numberOfBills(Bill.oneHundred)} 枚"),
                                 ],
                               ),
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   ButtonTheme(
                                     minWidth: 35.0,
@@ -173,17 +240,29 @@ class Calculator extends StatelessWidget {
                                           style: BorderStyle.solid,
                                         ),
                                       ),
-                                      onPressed: () {
-                                        model.increment(Bill.fifty);
-                                      },
+                                      onPressed: () {},
                                     ),
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.arrow_upward),
+                                    tooltip: 'Increase volume by 10',
+                                    onPressed: () {
+                                      model.increment(Bill.fifty);
+                                    },
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.arrow_downward),
+                                    tooltip: 'Increase volume by 10',
+                                    onPressed: () {
+                                      model.decrement(Bill.fifty);
+                                    },
                                   ),
                                   Text("${model.numberOfBills(Bill.fifty)} 枚"),
                                 ],
                               ),
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   ButtonTheme(
                                     minWidth: 35.0,
@@ -198,17 +277,29 @@ class Calculator extends StatelessWidget {
                                           style: BorderStyle.solid,
                                         ),
                                       ),
-                                      onPressed: () {
-                                        model.increment(Bill.ten);
-                                      },
+                                      onPressed: () {},
                                     ),
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.arrow_upward),
+                                    tooltip: 'Increase volume by 10',
+                                    onPressed: () {
+                                      model.increment(Bill.ten);
+                                    },
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.arrow_downward),
+                                    tooltip: 'Increase volume by 10',
+                                    onPressed: () {
+                                      model.decrement(Bill.ten);
+                                    },
                                   ),
                                   Text("${model.numberOfBills(Bill.ten)} 枚"),
                                 ],
                               ),
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   ButtonTheme(
                                     minWidth: 30.0,
@@ -223,17 +314,29 @@ class Calculator extends StatelessWidget {
                                           style: BorderStyle.solid,
                                         ),
                                       ),
-                                      onPressed: () {
-                                        model.increment(Bill.five);
-                                      },
+                                      onPressed: () {},
                                     ),
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.arrow_upward),
+                                    tooltip: 'Increase volume by 10',
+                                    onPressed: () {
+                                      model.increment(Bill.five);
+                                    },
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.arrow_downward),
+                                    tooltip: 'Increase volume by 10',
+                                    onPressed: () {
+                                      model.decrement(Bill.five);
+                                    },
                                   ),
                                   Text("${model.numberOfBills(Bill.five)} 枚"),
                                 ],
                               ),
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   ButtonTheme(
                                     minWidth: 30.0,
@@ -249,9 +352,22 @@ class Calculator extends StatelessWidget {
                                         ),
                                       ),
                                       onPressed: () {
-                                        model.increment(Bill.one);
                                       },
                                     ),
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.arrow_upward),
+                                    tooltip: 'Increase volume by 10',
+                                    onPressed: () {
+                                      model.increment(Bill.one);
+                                    },
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.arrow_downward),
+                                    tooltip: 'Increase volume by 10',
+                                    onPressed: () {
+                                      model.decrement(Bill.one);
+                                    },
                                   ),
                                   Text("${model.numberOfBills(Bill.one)} 枚"),
                                 ],

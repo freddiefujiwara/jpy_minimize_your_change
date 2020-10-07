@@ -20,13 +20,21 @@ class MinimizeChangeModel extends ChangeNotifier {
     this.clear();
   }
   void clear() {
-    Bill.values.forEach((b) => this._bills[b.index] = 0);
+    this._bills = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     this._billing = 0;
     notifyListeners();
   }
 
-  void increment(Bill b, int number) {
+  void increment(Bill b, {int number = 1}) {
     this._bills[b.index] += number;
+    notifyListeners();
+  }
+
+  void decrement(Bill b, {int number = 1}) {
+    this._bills[b.index] -= number;
+    if (this._bills[b.index] < 0) {
+      this._bills[b.index] = 0;
+    }
     notifyListeners();
   }
 
@@ -34,11 +42,23 @@ class MinimizeChangeModel extends ChangeNotifier {
     return this._bills[b.index];
   }
 
-  int sum() {
+  int totalNumberOfBills({List<int> bills}) {
+    if (bills == null) {
+      bills = this._bills;
+    }
+    int sum = 0;
+    bills.forEach((v) => sum += v);
+    return sum;
+  }
+
+  int sum({List<int> bills}) {
+    if (bills == null) {
+      bills = this._bills;
+    }
     int sum = 0;
     final List<int> values = [1, 5, 10, 50, 100, 500, 1000, 5000, 10000];
     Bill.values.forEach((b) {
-      sum += this._bills[b.index] * values[b.index];
+      sum += bills[b.index] * values[b.index];
     });
     return sum;
   }
@@ -48,7 +68,7 @@ class MinimizeChangeModel extends ChangeNotifier {
     final List<int> values = [1, 5, 10, 50, 100, 500, 1000, 5000, 10000];
     Bill.values.forEach((b) {
       int value = values[b.index];
-      for (var i = 0; i < this._bills[b.index]; i++) {
+      for (var i = 0; i < this.numberOfBills(b); i++) {
         candidates.add("${i}_$value");
       }
     });
@@ -61,9 +81,9 @@ class MinimizeChangeModel extends ChangeNotifier {
         sum += int.parse(match.group(1));
       });
       return this._billing <= sum;
-    }).forEach((c) {
+    }).forEach((s) {
       List<int> pays = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-      c.forEach((b) {
+      s.forEach((b) {
         final match = RegExp("^[0-9]+_([0-9]+)").firstMatch(b);
         pays[values.indexOf(int.parse(match.group(1)))]++;
       });
@@ -85,26 +105,17 @@ class MinimizeChangeModel extends ChangeNotifier {
   }
 
   List<List<int>> minimumPays() {
-    int currentBills = 0;
-    this._bills.forEach((v) => currentBills += v);
+    final int currentBills = this.totalNumberOfBills();
     int minimumBills = currentBills;
     List<int> bestPay = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     List<int> bestChange = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-    final List<int> values = [1, 5, 10, 50, 100, 500, 1000, 5000, 10000];
-    this.allSubsetsCanBePaid().forEach((c) {
-      int pay = 0;
-      c.forEach((v) => pay += v);
-      int payValue = 0;
-      int i = 0;
-      c.forEach((v) {
-        payValue += v * values[i];
-        i++;
-      });
-      List<int> changes = this.changeToBills(payValue - this._billing);
-      int change = 0;
-      changes.forEach((v) => change += v);
+    this.allSubsetsCanBePaid().forEach((s) {
+      final List<int> changes =
+          this.changeToBills(this.sum(bills: s) - this._billing);
+      final int pay = this.totalNumberOfBills(bills: s);
+      final int change = this.totalNumberOfBills(bills: changes);
       if (minimumBills > currentBills - pay + change) {
-        bestPay = c;
+        bestPay = s;
         bestChange = changes;
         minimumBills = currentBills - pay + change;
       }

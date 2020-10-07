@@ -70,14 +70,14 @@ class Home extends StatelessWidget {
                                   ),
                                   IconButton(
                                     icon: Icon(Icons.arrow_upward),
-                                    tooltip: 'Increase volume by 10',
+                                    tooltip: 'Increase 10,000円',
                                     onPressed: () {
                                       model.increment(Bill.tenThousands);
                                     },
                                   ),
                                   IconButton(
                                     icon: Icon(Icons.arrow_downward),
-                                    tooltip: 'Increase volume by 10',
+                                    tooltip: 'Decrease 10,000円',
                                     onPressed: () {
                                       model.decrement(Bill.tenThousands);
                                     },
@@ -98,14 +98,14 @@ class Home extends StatelessWidget {
                                   ),
                                   IconButton(
                                     icon: Icon(Icons.arrow_upward),
-                                    tooltip: 'Increase volume by 10',
+                                    tooltip: 'Increase 5,000円',
                                     onPressed: () {
                                       model.increment(Bill.fiveThousands);
                                     },
                                   ),
                                   IconButton(
                                     icon: Icon(Icons.arrow_downward),
-                                    tooltip: 'Increase volume by 10',
+                                    tooltip: 'Decrease 10,000円',
                                     onPressed: () {
                                       model.decrement(Bill.fiveThousands);
                                     },
@@ -128,14 +128,14 @@ class Home extends StatelessWidget {
                                   ),
                                   IconButton(
                                     icon: Icon(Icons.arrow_upward),
-                                    tooltip: 'Increase volume by 10',
+                                    tooltip: 'Increase 1,000円',
                                     onPressed: () {
                                       model.increment(Bill.oneThousand);
                                     },
                                   ),
                                   IconButton(
                                     icon: Icon(Icons.arrow_downward),
-                                    tooltip: 'Increase volume by 10',
+                                    tooltip: 'Decrease 1,000円',
                                     onPressed: () {
                                       model.decrement(Bill.oneThousand);
                                     },
@@ -167,14 +167,14 @@ class Home extends StatelessWidget {
                                   ),
                                   IconButton(
                                     icon: Icon(Icons.arrow_upward),
-                                    tooltip: 'Increase volume by 10',
+                                    tooltip: 'Increase 500円',
                                     onPressed: () {
                                       model.increment(Bill.fiveHundreds);
                                     },
                                   ),
                                   IconButton(
                                     icon: Icon(Icons.arrow_downward),
-                                    tooltip: 'Increase volume by 10',
+                                    tooltip: 'Increase 500円',
                                     onPressed: () {
                                       model.decrement(Bill.fiveHundreds);
                                     },
@@ -206,14 +206,14 @@ class Home extends StatelessWidget {
                                   ),
                                   IconButton(
                                     icon: Icon(Icons.arrow_upward),
-                                    tooltip: 'Increase volume by 10',
+                                    tooltip: 'Increase 100円',
                                     onPressed: () {
                                       model.increment(Bill.oneHundred);
                                     },
                                   ),
                                   IconButton(
                                     icon: Icon(Icons.arrow_downward),
-                                    tooltip: 'Increase volume by 10',
+                                    tooltip: 'Decrease 100円',
                                     onPressed: () {
                                       model.decrement(Bill.oneHundred);
                                     },
@@ -245,14 +245,14 @@ class Home extends StatelessWidget {
                                   ),
                                   IconButton(
                                     icon: Icon(Icons.arrow_upward),
-                                    tooltip: 'Increase volume by 10',
+                                    tooltip: 'Increase 50円',
                                     onPressed: () {
                                       model.increment(Bill.fifty);
                                     },
                                   ),
                                   IconButton(
                                     icon: Icon(Icons.arrow_downward),
-                                    tooltip: 'Increase volume by 10',
+                                    tooltip: 'Decrease 50円',
                                     onPressed: () {
                                       model.decrement(Bill.fifty);
                                     },
@@ -282,14 +282,14 @@ class Home extends StatelessWidget {
                                   ),
                                   IconButton(
                                     icon: Icon(Icons.arrow_upward),
-                                    tooltip: 'Increase volume by 10',
+                                    tooltip: 'Increase 10円',
                                     onPressed: () {
                                       model.increment(Bill.ten);
                                     },
                                   ),
                                   IconButton(
                                     icon: Icon(Icons.arrow_downward),
-                                    tooltip: 'Increase volume by 10',
+                                    tooltip: 'Decrease 10円',
                                     onPressed: () {
                                       model.decrement(Bill.ten);
                                     },
@@ -319,14 +319,14 @@ class Home extends StatelessWidget {
                                   ),
                                   IconButton(
                                     icon: Icon(Icons.arrow_upward),
-                                    tooltip: 'Increase volume by 10',
+                                    tooltip: 'Increase 5円',
                                     onPressed: () {
                                       model.increment(Bill.five);
                                     },
                                   ),
                                   IconButton(
                                     icon: Icon(Icons.arrow_downward),
-                                    tooltip: 'Increase volume by 10',
+                                    tooltip: 'Decrease 5円',
                                     onPressed: () {
                                       model.decrement(Bill.five);
                                     },
@@ -357,14 +357,14 @@ class Home extends StatelessWidget {
                                   ),
                                   IconButton(
                                     icon: Icon(Icons.arrow_upward),
-                                    tooltip: 'Increase volume by 10',
+                                    tooltip: 'Increase 1円',
                                     onPressed: () {
                                       model.increment(Bill.one);
                                     },
                                   ),
                                   IconButton(
                                     icon: Icon(Icons.arrow_downward),
-                                    tooltip: 'Increase volume by 10',
+                                    tooltip: 'Decrease 1円',
                                     onPressed: () {
                                       model.decrement(Bill.one);
                                     },

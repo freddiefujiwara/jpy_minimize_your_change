@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jpy_minimize_your_change/minimize_change_model.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+import 'input.dart';
 
 void main() {
   runApp(Home());
@@ -12,6 +13,10 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        initialRoute: '/',
+        routes: {
+          '/input': (context) => Input(),
+        },
         title: 'Japanese bills and coins calculator',
         theme: ThemeData(
           visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -63,11 +68,12 @@ class Home extends StatelessWidget {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   RaisedButton(
-                                    child: Text("10,000円"),
-                                    color: Colors.grey,
-                                    textColor: Colors.white,
-                                    onPressed: () {},
-                                  ),
+                                      child: Text("10,000円"),
+                                      color: Colors.grey,
+                                      textColor: Colors.white,
+                                      onPressed: () {
+                                        model.increment(Bill.tenThousands);
+                                      }),
                                   IconButton(
                                     icon: Icon(Icons.arrow_upward),
                                     tooltip: 'Increase 10,000円',
@@ -94,7 +100,9 @@ class Home extends StatelessWidget {
                                     child: Text("5,000円"),
                                     color: Colors.grey,
                                     textColor: Colors.white,
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      model.increment(Bill.fiveThousands);
+                                    },
                                   ),
                                   IconButton(
                                     icon: Icon(Icons.arrow_upward),
@@ -162,7 +170,9 @@ class Home extends StatelessWidget {
                                           style: BorderStyle.solid,
                                         ),
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        model.increment(Bill.fiveHundreds);
+                                      },
                                     ),
                                   ),
                                   IconButton(
@@ -201,7 +211,9 @@ class Home extends StatelessWidget {
                                           style: BorderStyle.solid,
                                         ),
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        model.increment(Bill.oneHundred);
+                                      },
                                     ),
                                   ),
                                   IconButton(
@@ -240,7 +252,9 @@ class Home extends StatelessWidget {
                                           style: BorderStyle.solid,
                                         ),
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        model.increment(Bill.fifty);
+                                      },
                                     ),
                                   ),
                                   IconButton(
@@ -277,7 +291,9 @@ class Home extends StatelessWidget {
                                           style: BorderStyle.solid,
                                         ),
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        model.increment(Bill.ten);
+                                      },
                                     ),
                                   ),
                                   IconButton(
@@ -314,7 +330,9 @@ class Home extends StatelessWidget {
                                           style: BorderStyle.solid,
                                         ),
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        model.increment(Bill.five);
+                                      },
                                     ),
                                   ),
                                   IconButton(
@@ -352,6 +370,7 @@ class Home extends StatelessWidget {
                                         ),
                                       ),
                                       onPressed: () {
+                                        model.increment(Bill.one);
                                       },
                                     ),
                                   ),
@@ -371,6 +390,14 @@ class Home extends StatelessWidget {
                                   ),
                                   Text("${model.numberOfBills(Bill.one)} 枚"),
                                 ],
+                              ),
+                              RaisedButton(
+                                child: Text("次へ"),
+                                color: Colors.white,
+                                textColor: Colors.black,
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/input');
+                                },
                               ),
                             ],
                           ),

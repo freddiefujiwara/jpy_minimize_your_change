@@ -8,7 +8,7 @@ class Input extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<MinimizeChangeModel>(
-      create: (_) =>MinimizeChangeModel(),
+      create: (_) => MinimizeChangeModel(),
       child: Scaffold(
           appBar: AppBar(
             title: Text('ステップ2:買った金額は？'),
@@ -28,12 +28,12 @@ class Input extends StatelessWidget {
                             new TextField(
                               decoration: new InputDecoration(labelText: "金額"),
                               keyboardType: TextInputType.number,
-                    maxLines:1 ,
-                     inputFormatters: <TextInputFormatter> [
-    WhitelistingTextInputFormatter.digitsOnly,
-  ],
-                    onChanged : (String number){
-model.billing = int.parse(number);
+                              maxLines: 1,
+                              inputFormatters: <TextInputFormatter>[
+                                FilteringTextInputFormatter.allow(RegExp(r"^\d+$")),
+                              ],
+                              onChanged: (String number) {
+                                model.billing = int.parse(number);
                               },
                             ),
                             Row(
@@ -53,10 +53,10 @@ model.billing = int.parse(number);
                                   color: Colors.white,
                                   textColor: Colors.black,
                                   onPressed: () {
-                        if(model.canPay()&&model.billing>0){
-                                    Navigator.of(context)
-                                        .pushNamed('/result');
-                        }
+                                    if (model.canPay() && model.billing > 0) {
+                                      Navigator.of(context)
+                                          .pushNamed('/result');
+                                    }
                                   },
                                 ),
                               ],

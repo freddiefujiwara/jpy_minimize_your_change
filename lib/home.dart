@@ -14,7 +14,7 @@ class Home extends StatelessWidget {
               title: Text('ステップ1:おさいふにいくらある？'),
             ),
             body:
-            Consumer<MinimizeChangeModel>(builder: (context, model, child) {
+                Consumer<MinimizeChangeModel>(builder: (context, model, child) {
               final formatter = NumberFormat("#,###");
               return SafeArea(
                 child: Container(
@@ -29,7 +29,7 @@ class Home extends StatelessWidget {
                           children: [
                             Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Text(
                                     "合計${formatter.format(model.sum())} 円",
@@ -372,8 +372,7 @@ class Home extends StatelessWidget {
                               color: Colors.white,
                               textColor: Colors.black,
                               onPressed: () {
-                                Navigator.of(context)
-                                    .pushNamed('/input');
+                                Navigator.of(context).pushNamed('/input');
                               },
                             ),
                           ],

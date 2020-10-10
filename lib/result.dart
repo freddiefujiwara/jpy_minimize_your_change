@@ -35,8 +35,7 @@ class Result extends StatelessWidget {
                                     color: Colors.grey,
                                     textColor: Colors.white,
                                     onPressed: () {}),
-                                Text(
-                                    "${result[0][8]} 枚"),
+                                Text("${result[0][8]} 枚"),
                               ],
                             ),
                             Row(
@@ -48,8 +47,7 @@ class Result extends StatelessWidget {
                                   textColor: Colors.white,
                                   onPressed: () {},
                                 ),
-                                Text(
-                                    "${result[0][7]} 枚"),
+                                Text("${result[0][7]} 枚"),
                               ],
                             ),
                             Row(
@@ -61,8 +59,7 @@ class Result extends StatelessWidget {
                                   textColor: Colors.white,
                                   onPressed: () {},
                                 ),
-                                Text(
-                                    "${result[0][6]} 枚"),
+                                Text("${result[0][6]} 枚"),
                               ],
                             ),
                             Row(
@@ -85,8 +82,7 @@ class Result extends StatelessWidget {
                                     onPressed: () {},
                                   ),
                                 ),
-                                Text(
-                                    "${result[0][5]} 枚"),
+                                Text("${result[0][5]} 枚"),
                               ],
                             ),
                             Row(
@@ -109,8 +105,7 @@ class Result extends StatelessWidget {
                                     onPressed: () {},
                                   ),
                                 ),
-                                Text(
-                                    "${result[0][4]} 枚"),
+                                Text("${result[0][4]} 枚"),
                               ],
                             ),
                             Row(
@@ -269,7 +264,7 @@ class Result extends StatelessWidget {
                                         number: result[1][7]);
                                     model.increment(Bill.tenThousands,
                                         number: result[1][8]);
-model.billing =0;
+                                    model.billing = 0;
                                     Navigator.of(context).pushNamed('/');
                                   },
                                 ),

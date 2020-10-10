@@ -163,7 +163,7 @@ class MinimizeChangeModel extends ChangeNotifier {
   }
 
   int sum({List<int> bills}) {
-    return this._minimizeChangeData.sum(bills:bills);
+    return this._minimizeChangeData.sum(bills: bills);
   }
 
   List<List<int>> allSubsetsCanBePaid() {

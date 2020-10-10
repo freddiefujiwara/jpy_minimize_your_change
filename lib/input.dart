@@ -31,6 +31,9 @@ class Input extends StatelessWidget {
   inputFormatters: <TextInputFormatter> [
     WhitelistingTextInputFormatter.digitsOnly,
   ],
+validator: (String value) {
+                return (value.isEmpty) ? '正しく入力してね' : null;
+              },
                               onChanged: (String number){
                                 model.billing = int.parse(number);
                               },

@@ -5,6 +5,8 @@ A tool to minimize your change.
 ## DEMO
 [DEMO](https://freddiefujiwara.com/jpy_minimize_your_change)
 
+![Demo](https://freddiefujiwara.com/jpy_minimize_your_change/ezgif.com-video-to-gif.gif)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.

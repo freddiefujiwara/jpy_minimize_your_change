@@ -13,21 +13,26 @@ enum Bill {
   tenThousands,
 }
 
-class MinimizeChangeModel extends ChangeNotifier {
+class _MinimizeChangeData {
   List<int> _bills = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   int _billing = 0;
-  MinimizeChangeModel() {
+  static final _MinimizeChangeData _instance = _MinimizeChangeData();
+
+  static _MinimizeChangeData get instance {
+    return _instance;
+  }
+
+  _MinimizeChangeData() {
     this.clear();
   }
+
   void clear() {
     this._bills = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     this._billing = 0;
-    notifyListeners();
   }
 
   void increment(Bill b, {int number = 1}) {
     this._bills[b.index] += number;
-    notifyListeners();
   }
 
   void decrement(Bill b, {int number = 1}) {
@@ -35,7 +40,6 @@ class MinimizeChangeModel extends ChangeNotifier {
     if (this._bills[b.index] < 0) {
       this._bills[b.index] = 0;
     }
-    notifyListeners();
   }
 
   int numberOfBills(Bill b) {
@@ -106,7 +110,7 @@ class MinimizeChangeModel extends ChangeNotifier {
 
   List<List<int>> minimumPays() {
     final int currentBills = this.totalNumberOfBills();
-    int minimumBills = currentBills;
+    int minimumBills = -1;
     List<int> bestPay = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     List<int> bestChange = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     this.allSubsetsCanBePaid().forEach((s) {
@@ -114,7 +118,7 @@ class MinimizeChangeModel extends ChangeNotifier {
           this.changeToBills(this.sum(bills: s) - this._billing);
       final int pay = this.totalNumberOfBills(bills: s);
       final int change = this.totalNumberOfBills(bills: changes);
-      if (minimumBills > currentBills - pay + change) {
+      if (minimumBills == -1 || minimumBills > currentBills - pay + change) {
         bestPay = s;
         bestChange = changes;
         minimumBills = currentBills - pay + change;
@@ -127,4 +131,55 @@ class MinimizeChangeModel extends ChangeNotifier {
 
   set billing(int _billing) => this._billing = _billing;
   int get billing => this._billing;
+}
+
+class MinimizeChangeModel extends ChangeNotifier {
+  _MinimizeChangeData _minimizeChangeData;
+
+  MinimizeChangeModel() {
+    this._minimizeChangeData = _MinimizeChangeData.instance;
+  }
+  void clear() {
+    this._minimizeChangeData.clear();
+    notifyListeners();
+  }
+
+  void increment(Bill b, {int number = 1}) {
+    this._minimizeChangeData.increment(b, number: number);
+    notifyListeners();
+  }
+
+  void decrement(Bill b, {int number = 1}) {
+    this._minimizeChangeData.decrement(b, number: number);
+    notifyListeners();
+  }
+
+  int numberOfBills(Bill b) {
+    return this._minimizeChangeData.numberOfBills(b);
+  }
+
+  int totalNumberOfBills({List<int> bills}) {
+    return this._minimizeChangeData.totalNumberOfBills(bills: bills);
+  }
+
+  int sum({List<int> bills}) {
+    return this._minimizeChangeData.sum(bills:bills);
+  }
+
+  List<List<int>> allSubsetsCanBePaid() {
+    return this._minimizeChangeData.allSubsetsCanBePaid();
+  }
+
+  List<int> changeToBills(int change) {
+    return this._minimizeChangeData.changeToBills(change);
+  }
+
+  List<List<int>> minimumPays() {
+    return this._minimizeChangeData.minimumPays();
+  }
+
+  bool canPay() => this._minimizeChangeData.canPay();
+
+  set billing(int _billing) => this._minimizeChangeData.billing = _billing;
+  int get billing => this._minimizeChangeData.billing;
 }

@@ -6,47 +6,61 @@ class Input extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Japanese bills and coins calculator',
-        theme: ThemeData(
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-          primarySwatch: Colors.blue,
-        ),
-        home: ChangeNotifierProvider<MinimizeChangeModel>(
-          create: (_) => MinimizeChangeModel(),
-          child: Scaffold(
-              appBar: AppBar(
-                title: Text('Japanese bills and coins calculator'),
-              ),
-              body: Consumer<MinimizeChangeModel>(
-                  builder: (context, model, child) {
-                    return SafeArea(
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
+    return ChangeNotifierProvider<MinimizeChangeModel>(
+      create: (_) =>MinimizeChangeModel(),
+      child: Scaffold(
+          appBar: AppBar(
+            title: Text('ステップ2:買った金額は？'),
+          ),
+          body: Consumer<MinimizeChangeModel>(builder: (context, model, child) {
+            return SafeArea(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Expanded(
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  RaisedButton(
-                                    child: Text("次へ"),
-                                    color: Colors.white,
-                                    textColor: Colors.black,
-                                    onPressed: () {
-                                      model.clear();
-                                    },
-                                  ),
-                                ],
-                              ),
+                            new TextField(
+                              decoration: new InputDecoration(labelText: "金額"),
+                              keyboardType: TextInputType.number,
+                              onChanged: (String number){
+                                model.billing = int.parse(number);
+                              },
                             ),
-                          ],
-                        ),
-                      ),
-                    );
-                  })),
-        ));
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                RaisedButton(
+                                  child: Text("もどる"),
+                                  color: Colors.white,
+                                  textColor: Colors.black,
+                                  onPressed: () {
+                                    Navigator.popUntil(
+                                        context, ModalRoute.withName("/"));
+                                  },
+                                ),
+                                RaisedButton(
+                                  child: Text("つぎへ"),
+                                  color: Colors.white,
+                                  textColor: Colors.black,
+                                  onPressed: () {
+                                    Navigator.of(context)
+                                        .pushNamed('/result');
+                                  },
+                                ),
+                              ],
+                            ),
+                          ]),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          })),
+    );
   }
 }

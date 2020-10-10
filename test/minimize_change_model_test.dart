@@ -5,6 +5,7 @@ void main() {
   MinimizeChangeModel m;
   setUp(() {
     m = MinimizeChangeModel();
+    m.clear();
   });
   group('MinimizeChange', () {
     test("increment/number", () {
@@ -143,6 +144,19 @@ void main() {
       expect(minimums, [
         [1, 0, 1, 0, 3, 0, 1, 0, 0],
         [0, 1, 0, 1, 0, 1, 0, 0, 0]
+      ]);
+
+      m.clear();
+      m.billing = 900;
+      m.increment(Bill.tenThousands, number: 1);
+
+      minimums = m.minimumPays();
+      expect(minimums.length, 2);
+      expect(minimums[0].length, 9);
+      expect(minimums[1].length, 9);
+      expect(minimums, [
+        [0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [0, 0, 0, 0, 1, 0, 4, 1, 0]
       ]);
     });
   });

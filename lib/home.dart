@@ -15,6 +15,7 @@ class Home extends StatelessWidget {
             ),
             body:
                 Consumer<MinimizeChangeModel>(builder: (context, model, child) {
+              model.restore();
               final formatter = NumberFormat("#,###");
               return SafeArea(
                 child: Container(

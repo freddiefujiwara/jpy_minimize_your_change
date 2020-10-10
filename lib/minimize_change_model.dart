@@ -1,5 +1,6 @@
 import 'package:trotter/trotter.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 enum Bill {
   one,
@@ -65,6 +66,32 @@ class _MinimizeChangeData {
       sum += bills[b.index] * values[b.index];
     });
     return sum;
+  }
+
+  Future save() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt('one', this._bills[Bill.one.index]);
+    prefs.setInt('five', this._bills[Bill.five.index]);
+    prefs.setInt('ten', this._bills[Bill.ten.index]);
+    prefs.setInt('fifty', this._bills[Bill.fifty.index]);
+    prefs.setInt('oneHundred', this._bills[Bill.oneHundred.index]);
+    prefs.setInt('fiveHundreds', this._bills[Bill.fiveHundreds.index]);
+    prefs.setInt('oneThousand', this._bills[Bill.oneThousand.index]);
+    prefs.setInt('fiveThousands', this._bills[Bill.fiveThousands.index]);
+    prefs.setInt('tenThousands', this._bills[Bill.tenThousands.index]);
+  }
+
+  Future restore() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    this._bills[Bill.one.index] = prefs.getInt('one');
+    this._bills[Bill.five.index] = prefs.getInt('five');
+    this._bills[Bill.ten.index] = prefs.getInt('ten');
+    this._bills[Bill.fifty.index] = prefs.getInt('fifty');
+    this._bills[Bill.oneHundred.index] = prefs.getInt('oneHundred');
+    this._bills[Bill.fiveHundreds.index] = prefs.getInt('fiveHundreds');
+    this._bills[Bill.oneThousand.index] = prefs.getInt('oneThousand');
+    this._bills[Bill.fiveThousands.index] = prefs.getInt('fiveThousands');
+    this._bills[Bill.tenThousands.index] = prefs.getInt('tenThousands');
   }
 
   List<List<int>> allSubsetsCanBePaid() {
@@ -141,16 +168,19 @@ class MinimizeChangeModel extends ChangeNotifier {
   }
   void clear() {
     this._minimizeChangeData.clear();
+    this.save();
     notifyListeners();
   }
 
   void increment(Bill b, {int number = 1}) {
     this._minimizeChangeData.increment(b, number: number);
+    this.save();
     notifyListeners();
   }
 
   void decrement(Bill b, {int number = 1}) {
     this._minimizeChangeData.decrement(b, number: number);
+    this.save();
     notifyListeners();
   }
 
@@ -179,6 +209,11 @@ class MinimizeChangeModel extends ChangeNotifier {
   }
 
   bool canPay() => this._minimizeChangeData.canPay();
+  Future save() async => await this._minimizeChangeData.save();
+  Future restore() async {
+    await this._minimizeChangeData.restore();
+    notifyListeners();
+  }
 
   set billing(int _billing) => this._minimizeChangeData.billing = _billing;
   int get billing => this._minimizeChangeData.billing;

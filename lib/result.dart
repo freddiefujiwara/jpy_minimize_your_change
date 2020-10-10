@@ -265,7 +265,9 @@ class Result extends StatelessWidget {
                                     model.increment(Bill.tenThousands,
                                         number: result[1][8]);
                                     model.billing = 0;
-                                    Navigator.of(context).pushNamed('/');
+                                    model.save();
+                                    Navigator.of(context)
+                                        .popUntil(ModalRoute.withName('/'));
                                   },
                                 ),
                               ],

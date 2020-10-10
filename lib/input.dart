@@ -53,7 +53,7 @@ class Input extends StatelessWidget {
                                   color: Colors.white,
                                   textColor: Colors.black,
                                   onPressed: () {
-if(model.canPay()){
+if(model.canPay()&&model.billing>0){
                                     Navigator.of(context)
                                         .pushNamed('/result');}
                                   },

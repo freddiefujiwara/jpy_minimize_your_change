@@ -32,7 +32,7 @@ class Input extends StatelessWidget {
   inputFormatters: <TextInputFormatter> [
     WhitelistingTextInputFormatter.digitsOnly,
   ],
-                              onChanged: (String number){
+                              onEditingComplete: (String number){
                                 model.billing = int.parse(number);
                               },
                             ),

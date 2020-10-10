@@ -9,10 +9,10 @@ const RESOURCES = {
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
 "assets/NOTICES": "9b5eff13d7fa38bbd3b9e10277c973d9",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
-"main.dart.js": "a099289422df0eb661add1b025008a97",
+"main.dart.js": "c67403740fa39c3acc70dc0c25e812c1",
 "manifest.json": "542e8ba08f667b3261a2b5b95b3a2db4",
-"index.html": "a391d9e753d164330804b28106157673",
-"/": "a391d9e753d164330804b28106157673",
+"index.html": "0b60f22da657c9b5272f2a3d1ee63267",
+"/": "0b60f22da657c9b5272f2a3d1ee63267",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1"
 };

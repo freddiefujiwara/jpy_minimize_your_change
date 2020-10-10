@@ -25,16 +25,13 @@ class Input extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            new TextFormField(
+                            new TextField(
                               decoration: new InputDecoration(labelText: "金額"),
                               keyboardType: TextInputType.number,
  maxLines:1 ,
   inputFormatters: <TextInputFormatter> [
     WhitelistingTextInputFormatter.digitsOnly,
   ],
-validator: (String value) {
-                return (value.isEmpty) ? '正しく入力してね' : null;
-              },
                               onChanged: (String number){
                                 model.billing = int.parse(number);
                               },

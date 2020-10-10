@@ -33,9 +33,11 @@ class Input extends StatelessWidget {
     WhitelistingTextInputFormatter.digitsOnly,
   ],
                              onChanged : (String number){
-if(model.canPay()&&model.billing>0){
-                                model.billing = int.parse(number);
+int billing = model.billing;
+model.billing = int.parse(number);
+if(model.canPay()&&model.billing>0){          
 return number;}
+model.billing = billing;
 return null;
                               },
                             ),

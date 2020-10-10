@@ -53,9 +53,10 @@ model.billing = int.parse(number);
                                   color: Colors.white,
                                   textColor: Colors.black,
                                   onPressed: () {
-if(model.canPay()&&model.billing>0){
+                        if(model.canPay()&&model.billing>0){
                                     Navigator.of(context)
-                                        .pushNamed('/result');}
+                                        .pushNamed('/result');
+                        }
                                   },
                                 ),
                               ],

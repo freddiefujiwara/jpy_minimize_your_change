@@ -12,8 +12,8 @@ const RESOURCES = {
 "ezgif.com-video-to-gif.gif": "f205c4f818aa9ffaf1b6dbf1a21dceba",
 "main.dart.js": "c67403740fa39c3acc70dc0c25e812c1",
 "manifest.json": "542e8ba08f667b3261a2b5b95b3a2db4",
-"index.html": "f18e74ed3cd031d5149b15b4cc57a66d",
-"/": "f18e74ed3cd031d5149b15b4cc57a66d",
+"index.html": "06e4480e13bf6cf1ec2db33fbd2b8e7c",
+"/": "06e4480e13bf6cf1ec2db33fbd2b8e7c",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1"
 };

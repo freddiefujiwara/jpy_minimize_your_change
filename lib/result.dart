@@ -269,6 +269,7 @@ class Result extends StatelessWidget {
                                         number: result[1][7]);
                                     model.increment(Bill.tenThousands,
                                         number: result[1][8]);
+model.billing =0;
                                     Navigator.of(context).pushNamed('/');
                                   },
                                 ),

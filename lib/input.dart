@@ -53,8 +53,9 @@ class Input extends StatelessWidget {
                                   color: Colors.white,
                                   textColor: Colors.black,
                                   onPressed: () {
+if(model.canPay()){
                                     Navigator.of(context)
-                                        .pushNamed('/result');
+                                        .pushNamed('/result');}
                                   },
                                 ),
                               ],

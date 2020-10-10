@@ -45988,10 +45988,11 @@ $C:"$3",
 $R:3,
 $S:56}
 Y.Ka.prototype={
-$1:function(a){var s=this.a,r=s.a
-if(r.b<=r.vG()&&s.a.b>0){r=P.j4(a,null)
+$1:function(a){var s=this.a,r=s.a.b,q=P.j4(a,null),p=s.a
+p.b=q
+if(q<=p.vG()&&s.a.b>0)return a
 s.a.b=r
-return a}return null},
+return null},
 $S:93}
 Y.Kb.prototype={
 $0:function(){var s=T.a_J("/")

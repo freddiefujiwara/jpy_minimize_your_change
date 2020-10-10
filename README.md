@@ -2,6 +2,9 @@
 
 A tool to minimize your change.
 
+## DEMO
+[DEMO](https://freddiefujiwara.com/jpy_minimize_your_change)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.

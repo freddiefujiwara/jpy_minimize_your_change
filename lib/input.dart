@@ -25,7 +25,7 @@ class Input extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            new TextField(
+                            new TextFormField(
                               decoration: new InputDecoration(labelText: "金額"),
                               keyboardType: TextInputType.number,
  maxLines:1 ,

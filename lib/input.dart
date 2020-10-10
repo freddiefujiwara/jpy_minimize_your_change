@@ -28,11 +28,11 @@ class Input extends StatelessWidget {
                             new TextField(
                               decoration: new InputDecoration(labelText: "金額"),
                               keyboardType: TextInputType.number,
- maxLines:1 ,
-  inputFormatters: <TextInputFormatter> [
+                    maxLines:1 ,
+                     inputFormatters: <TextInputFormatter> [
     WhitelistingTextInputFormatter.digitsOnly,
   ],
-                             onChanged : (String number){
+                    onChanged : (String number){
 model.billing = int.parse(number);
                               },
                             ),

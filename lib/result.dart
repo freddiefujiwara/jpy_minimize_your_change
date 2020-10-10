@@ -261,7 +261,7 @@ class Result extends StatelessWidget {
                                         number: result[1][3]);
                                     model.increment(Bill.oneHundred,
                                         number: result[1][4]);
-                                    model.decrement(Bill.fiveHundreds,
+                                    model.increment(Bill.fiveHundreds,
                                         number: result[1][5]);
                                     model.increment(Bill.oneThousand,
                                         number: result[1][6]);

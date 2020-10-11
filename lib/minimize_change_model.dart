@@ -159,7 +159,7 @@ class _MinimizeChangeData {
     return bills;
   }
 
-  List<int> _cheatAnswer() {
+  List<int> _cheatMinimumPay() {
     int remain = this._billing;
     List<int> answerArray = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     final column = [1,10,100,100];
@@ -187,8 +187,8 @@ class _MinimizeChangeData {
     final int currentBills = this.totalNumberOfBills();
     List<int> bestPay = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     List<int> bestChange = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-    if (currentBills > 13) {
-      bestPay = this._cheatAnswer();
+    if (currentBills > 13) { // too many candidates
+      bestPay = this._cheatMinimumPay();
       bestChange = this.changeToBills(this.sum(bills: bestPay) - this._billing);
     } else {
       int minimumBills = -1;

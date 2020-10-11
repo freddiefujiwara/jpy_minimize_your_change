@@ -46,6 +46,7 @@ class Home extends StatelessWidget {
                                     textColor: Colors.black,
                                     onPressed: () {
                                       model.clear();
+                                      model.save();
                                     },
                                   ),
                                 ]),
@@ -58,12 +59,14 @@ class Home extends StatelessWidget {
                                     textColor: Colors.white,
                                     onPressed: () {
                                       model.increment(Bill.tenThousands);
+                                      model.save();
                                     }),
                                 IconButton(
                                   icon: Icon(Icons.arrow_upward),
                                   tooltip: 'Increase 10,000円',
                                   onPressed: () {
                                     model.increment(Bill.tenThousands);
+                                    model.save();
                                   },
                                 ),
                                 IconButton(
@@ -71,6 +74,7 @@ class Home extends StatelessWidget {
                                   tooltip: 'Decrease 10,000円',
                                   onPressed: () {
                                     model.decrement(Bill.tenThousands);
+                                    model.save();
                                   },
                                 ),
                                 Text(
@@ -86,6 +90,7 @@ class Home extends StatelessWidget {
                                   textColor: Colors.white,
                                   onPressed: () {
                                     model.increment(Bill.fiveThousands);
+                                    model.save();
                                   },
                                 ),
                                 IconButton(
@@ -93,6 +98,7 @@ class Home extends StatelessWidget {
                                   tooltip: 'Increase 5,000円',
                                   onPressed: () {
                                     model.increment(Bill.fiveThousands);
+                                    model.save();
                                   },
                                 ),
                                 IconButton(
@@ -100,6 +106,7 @@ class Home extends StatelessWidget {
                                   tooltip: 'Decrease 10,000円',
                                   onPressed: () {
                                     model.decrement(Bill.fiveThousands);
+                                    model.save();
                                   },
                                 ),
                                 Text(
@@ -115,6 +122,7 @@ class Home extends StatelessWidget {
                                   textColor: Colors.white,
                                   onPressed: () {
                                     model.increment(Bill.oneThousand);
+                                    model.save();
                                   },
                                 ),
                                 IconButton(
@@ -122,6 +130,7 @@ class Home extends StatelessWidget {
                                   tooltip: 'Increase 1,000円',
                                   onPressed: () {
                                     model.increment(Bill.oneThousand);
+                                    model.save();
                                   },
                                 ),
                                 IconButton(
@@ -129,6 +138,7 @@ class Home extends StatelessWidget {
                                   tooltip: 'Decrease 1,000円',
                                   onPressed: () {
                                     model.decrement(Bill.oneThousand);
+                                    model.save();
                                   },
                                 ),
                                 Text(
@@ -154,6 +164,7 @@ class Home extends StatelessWidget {
                                     ),
                                     onPressed: () {
                                       model.increment(Bill.fiveHundreds);
+                                      model.save();
                                     },
                                   ),
                                 ),
@@ -162,6 +173,7 @@ class Home extends StatelessWidget {
                                   tooltip: 'Increase 500円',
                                   onPressed: () {
                                     model.increment(Bill.fiveHundreds);
+                                    model.save();
                                   },
                                 ),
                                 IconButton(
@@ -169,6 +181,7 @@ class Home extends StatelessWidget {
                                   tooltip: 'Increase 500円',
                                   onPressed: () {
                                     model.decrement(Bill.fiveHundreds);
+                                    model.save();
                                   },
                                 ),
                                 Text(
@@ -194,6 +207,7 @@ class Home extends StatelessWidget {
                                     ),
                                     onPressed: () {
                                       model.increment(Bill.oneHundred);
+                                      model.save();
                                     },
                                   ),
                                 ),
@@ -202,6 +216,7 @@ class Home extends StatelessWidget {
                                   tooltip: 'Increase 100円',
                                   onPressed: () {
                                     model.increment(Bill.oneHundred);
+                                    model.save();
                                   },
                                 ),
                                 IconButton(
@@ -209,6 +224,7 @@ class Home extends StatelessWidget {
                                   tooltip: 'Decrease 100円',
                                   onPressed: () {
                                     model.decrement(Bill.oneHundred);
+                                    model.save();
                                   },
                                 ),
                                 Text(
@@ -234,6 +250,7 @@ class Home extends StatelessWidget {
                                     ),
                                     onPressed: () {
                                       model.increment(Bill.fifty);
+                                      model.save();
                                     },
                                   ),
                                 ),
@@ -242,6 +259,7 @@ class Home extends StatelessWidget {
                                   tooltip: 'Increase 50円',
                                   onPressed: () {
                                     model.increment(Bill.fifty);
+                                    model.save();
                                   },
                                 ),
                                 IconButton(
@@ -249,6 +267,7 @@ class Home extends StatelessWidget {
                                   tooltip: 'Decrease 50円',
                                   onPressed: () {
                                     model.decrement(Bill.fifty);
+                                    model.save();
                                   },
                                 ),
                                 Text("${model.numberOfBills(Bill.fifty)} 枚"),
@@ -272,6 +291,7 @@ class Home extends StatelessWidget {
                                     ),
                                     onPressed: () {
                                       model.increment(Bill.ten);
+                                      model.save();
                                     },
                                   ),
                                 ),
@@ -280,6 +300,7 @@ class Home extends StatelessWidget {
                                   tooltip: 'Increase 10円',
                                   onPressed: () {
                                     model.increment(Bill.ten);
+                                    model.save();
                                   },
                                 ),
                                 IconButton(
@@ -287,6 +308,7 @@ class Home extends StatelessWidget {
                                   tooltip: 'Decrease 10円',
                                   onPressed: () {
                                     model.decrement(Bill.ten);
+                                    model.save();
                                   },
                                 ),
                                 Text("${model.numberOfBills(Bill.ten)} 枚"),
@@ -310,6 +332,7 @@ class Home extends StatelessWidget {
                                     ),
                                     onPressed: () {
                                       model.increment(Bill.five);
+                                      model.save();
                                     },
                                   ),
                                 ),
@@ -318,6 +341,7 @@ class Home extends StatelessWidget {
                                   tooltip: 'Increase 5円',
                                   onPressed: () {
                                     model.increment(Bill.five);
+                                    model.save();
                                   },
                                 ),
                                 IconButton(
@@ -325,6 +349,7 @@ class Home extends StatelessWidget {
                                   tooltip: 'Decrease 5円',
                                   onPressed: () {
                                     model.decrement(Bill.five);
+                                    model.save();
                                   },
                                 ),
                                 Text("${model.numberOfBills(Bill.five)} 枚"),
@@ -348,6 +373,7 @@ class Home extends StatelessWidget {
                                     ),
                                     onPressed: () {
                                       model.increment(Bill.one);
+                                      model.save();
                                     },
                                   ),
                                 ),
@@ -356,6 +382,7 @@ class Home extends StatelessWidget {
                                   tooltip: 'Increase 1円',
                                   onPressed: () {
                                     model.increment(Bill.one);
+                                    model.save();
                                   },
                                 ),
                                 IconButton(
@@ -363,6 +390,7 @@ class Home extends StatelessWidget {
                                   tooltip: 'Decrease 1円',
                                   onPressed: () {
                                     model.decrement(Bill.one);
+                                    model.save();
                                   },
                                 ),
                                 Text("${model.numberOfBills(Bill.one)} 枚"),

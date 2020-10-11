@@ -168,19 +168,16 @@ class MinimizeChangeModel extends ChangeNotifier {
   }
   void clear() {
     this._minimizeChangeData.clear();
-    this.save();
     notifyListeners();
   }
 
   void increment(Bill b, {int number = 1}) {
     this._minimizeChangeData.increment(b, number: number);
-    this.save();
     notifyListeners();
   }
 
   void decrement(Bill b, {int number = 1}) {
     this._minimizeChangeData.decrement(b, number: number);
-    this.save();
     notifyListeners();
   }
 

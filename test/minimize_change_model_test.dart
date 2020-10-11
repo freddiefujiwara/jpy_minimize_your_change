@@ -180,6 +180,29 @@ void main() {
         [1, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0]
       ]);
+
+
+      m.clear();
+      m.billing = 9;
+
+      m.increment(Bill.tenThousands, number: 8);
+      m.increment(Bill.fiveThousands, number: 1);
+      m.increment(Bill.oneThousand, number: 4);
+      m.decrement(Bill.fiveHundreds, number: 1);
+      m.increment(Bill.oneHundred, number: 4);
+      m.increment(Bill.fifty, number: 1);
+      m.increment(Bill.ten, number: 4);
+      m.increment(Bill.five, number: 1);
+      m.increment(Bill.one, number: 3);
+
+      minimums = m.minimumPays();
+      expect(minimums.length, 2);
+      expect(minimums[0].length, 9);
+      expect(minimums[1].length, 9);
+      expect(minimums, [
+        [0, 0, 1, 0, 0, 0, 0, 0, 0],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0]
+      ]);
     });
     test('save&restore', () async {
       await m.remove();

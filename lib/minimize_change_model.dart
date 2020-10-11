@@ -131,8 +131,7 @@ class _MinimizeChangeData {
       }
     });
     List<List<int>> subs = [];
-    final subSet = Subsets(candidatesIndex);
-    subSet().where((s) {
+    Subsets(candidatesIndex)().where((s) {
       int sum = 0;
       s.forEach((b) {
         sum += candidates[b];
@@ -160,38 +159,51 @@ class _MinimizeChangeData {
     return bills;
   }
 
-  List<List<int>> minimumPays() {
-    List<int> perfectPays = this.changeToBills(this._billing);
-    if (this._bills[0] >= perfectPays[0] &&
-        this._bills[1] >= perfectPays[1] &&
-        this._bills[2] >= perfectPays[2] &&
-        this._bills[3] >= perfectPays[3] &&
-        this._bills[4] >= perfectPays[4] &&
-        this._bills[5] >= perfectPays[5] &&
-        this._bills[6] >= perfectPays[6] &&
-        this._bills[7] >= perfectPays[7] &&
-        this._bills[8] >= perfectPays[8]) {
-      return [
-        perfectPays,
-        [0, 0, 0, 0, 0, 0, 0, 0, 0]
-      ];
+  List<int> _cheatAnswer() {
+    int remain = this._billing;
+    List<int> answerArray = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+    final column = [1,10,100,100];
+    for (var i = 0; i < 4; i++) {
+      int targetNum = (remain % (10 * column[i]) / column[i]).ceil();
+      if (targetNum == 10) {
+        targetNum = 0;
+      }
+      if (targetNum % 5 <= this._bills[2 * i]) {
+        answerArray[2 * i] = targetNum % 5;
+      }
+      int targetRemain = targetNum - answerArray[2 * i];
+      if (targetRemain <= 5 * this._bills[2 * i + 1] && targetRemain != 0) {
+        answerArray[2 * i + 1] = 1;
+      }
+      remain = remain -
+          column[i] * answerArray[2 * i] -
+          column[i] * 5 * answerArray[2 * i + 1];
     }
+    answerArray[8] = (remain / 10000).ceil();
+    return answerArray;
+  }
 
+  List<List<int>> minimumPays() {
     final int currentBills = this.totalNumberOfBills();
-    int minimumBills = -1;
     List<int> bestPay = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     List<int> bestChange = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-    this.allSubsetsCanBePaid().forEach((s) {
-      final List<int> changes =
-          this.changeToBills(this.sum(bills: s) - this._billing);
-      final int pay = this.totalNumberOfBills(bills: s);
-      final int change = this.totalNumberOfBills(bills: changes);
-      if (minimumBills == -1 || minimumBills > currentBills - pay + change) {
-        bestPay = s;
-        bestChange = changes;
-        minimumBills = currentBills - pay + change;
-      }
-    });
+    if (currentBills > 13) {
+      bestPay = this._cheatAnswer();
+      bestChange = this.changeToBills(this.sum(bills: bestPay) - this._billing);
+    } else {
+      int minimumBills = -1;
+      this.allSubsetsCanBePaid().forEach((s) {
+        final List<int> changes =
+            this.changeToBills(this.sum(bills: s) - this._billing);
+        final int pay = this.totalNumberOfBills(bills: s);
+        final int change = this.totalNumberOfBills(bills: changes);
+        if (minimumBills == -1 || minimumBills > currentBills - pay + change) {
+          bestPay = s;
+          bestChange = changes;
+          minimumBills = currentBills - pay + change;
+        }
+      });
+    }
     return [bestPay, bestChange];
   }
 

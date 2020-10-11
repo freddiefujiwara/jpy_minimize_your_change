@@ -195,14 +195,18 @@ class MinimizeChangeModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void increment(Bill b, {int number = 1}) {
+  void increment(Bill b, {int number = 1, doNotifyListeners: true}) {
     this._minimizeChangeData.increment(b, number: number);
-    notifyListeners();
+    if (doNotifyListeners) {
+      notifyListeners();
+    }
   }
 
-  void decrement(Bill b, {int number = 1}) {
+  void decrement(Bill b, {int number = 1, doNotifyListeners: true}) {
     this._minimizeChangeData.decrement(b, number: number);
-    notifyListeners();
+    if (doNotifyListeners) {
+      notifyListeners();
+    }
   }
 
   int numberOfBills(Bill b) {

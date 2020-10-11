@@ -264,42 +264,60 @@ class Result extends StatelessWidget {
                                   textColor: Colors.black,
                                   onPressed: () {
                                     model.decrement(Bill.one,
-                                        number: result[0][0]);
+                                        number: result[0][0],
+                                        doNotifyListeners: false);
                                     model.decrement(Bill.five,
-                                        number: result[0][1]);
+                                        number: result[0][1],
+                                        doNotifyListeners: false);
                                     model.decrement(Bill.ten,
-                                        number: result[0][2]);
+                                        number: result[0][2],
+                                        doNotifyListeners: false);
                                     model.decrement(Bill.fifty,
-                                        number: result[0][3]);
+                                        number: result[0][3],
+                                        doNotifyListeners: false);
                                     model.decrement(Bill.oneHundred,
-                                        number: result[0][4]);
+                                        number: result[0][4],
+                                        doNotifyListeners: false);
                                     model.decrement(Bill.fiveHundreds,
-                                        number: result[0][5]);
+                                        number: result[0][5],
+                                        doNotifyListeners: false);
                                     model.decrement(Bill.oneThousand,
-                                        number: result[0][6]);
+                                        number: result[0][6],
+                                        doNotifyListeners: false);
                                     model.decrement(Bill.fiveThousands,
-                                        number: result[0][7]);
+                                        number: result[0][7],
+                                        doNotifyListeners: false);
                                     model.decrement(Bill.tenThousands,
-                                        number: result[0][8]);
+                                        number: result[0][8],
+                                        doNotifyListeners: false);
 
                                     model.increment(Bill.one,
-                                        number: result[1][0]);
+                                        number: result[1][0],
+                                        doNotifyListeners: false);
                                     model.increment(Bill.five,
-                                        number: result[1][1]);
+                                        number: result[1][1],
+                                        doNotifyListeners: false);
                                     model.increment(Bill.ten,
-                                        number: result[1][2]);
+                                        number: result[1][2],
+                                        doNotifyListeners: false);
                                     model.increment(Bill.fifty,
-                                        number: result[1][3]);
+                                        number: result[1][3],
+                                        doNotifyListeners: false);
                                     model.increment(Bill.oneHundred,
-                                        number: result[1][4]);
+                                        number: result[1][4],
+                                        doNotifyListeners: false);
                                     model.increment(Bill.fiveHundreds,
-                                        number: result[1][5]);
+                                        number: result[1][5],
+                                        doNotifyListeners: false);
                                     model.increment(Bill.oneThousand,
-                                        number: result[1][6]);
+                                        number: result[1][6],
+                                        doNotifyListeners: false);
                                     model.increment(Bill.fiveThousands,
-                                        number: result[1][7]);
+                                        number: result[1][7],
+                                        doNotifyListeners: false);
                                     model.increment(Bill.tenThousands,
-                                        number: result[1][8]);
+                                        number: result[1][8],
+                                        doNotifyListeners: false);
                                     model.billing = 0;
                                     model.save();
                                     Navigator.of(context)

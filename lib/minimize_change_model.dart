@@ -119,28 +119,29 @@ class _MinimizeChangeData {
   }
 
   List<List<int>> allSubsetsCanBePaid() {
-    List<String> candidates = [];
+    List<int> candidates = [];
+    List<int> candidatesIndex = [];
     final List<int> values = [1, 5, 10, 50, 100, 500, 1000, 5000, 10000];
+    int index = 0;
     Bill.values.forEach((b) {
-      int value = values[b.index];
       for (var i = 0; i < this.numberOfBills(b); i++) {
-        candidates.add("${i}_$value");
+        candidates.add(values[b.index]);
+        candidatesIndex.add(index);
+        index++;
       }
     });
     List<List<int>> subs = [];
-    final subSet = Subsets(candidates);
+    final subSet = Subsets(candidatesIndex);
     subSet().where((s) {
       int sum = 0;
       s.forEach((b) {
-        final match = RegExp("^[0-9]+_([0-9]+)").firstMatch(b);
-        sum += int.parse(match.group(1));
+        sum += candidates[b];
       });
       return this._billing <= sum;
     }).forEach((s) {
       List<int> pays = [0, 0, 0, 0, 0, 0, 0, 0, 0];
       s.forEach((b) {
-        final match = RegExp("^[0-9]+_([0-9]+)").firstMatch(b);
-        pays[values.indexOf(int.parse(match.group(1)))]++;
+        pays[values.indexOf(candidates[b])]++;
       });
       subs.add(pays);
     });
@@ -160,6 +161,22 @@ class _MinimizeChangeData {
   }
 
   List<List<int>> minimumPays() {
+    List<int> perfectPays = this.changeToBills(this._billing);
+    if (this._bills[0] >= perfectPays[0] &&
+        this._bills[1] >= perfectPays[1] &&
+        this._bills[2] >= perfectPays[2] &&
+        this._bills[3] >= perfectPays[3] &&
+        this._bills[4] >= perfectPays[4] &&
+        this._bills[5] >= perfectPays[5] &&
+        this._bills[6] >= perfectPays[6] &&
+        this._bills[7] >= perfectPays[7] &&
+        this._bills[8] >= perfectPays[8]) {
+      return [
+        perfectPays,
+        [0, 0, 0, 0, 0, 0, 0, 0, 0]
+      ];
+    }
+
     final int currentBills = this.totalNumberOfBills();
     int minimumBills = -1;
     List<int> bestPay = [0, 0, 0, 0, 0, 0, 0, 0, 0];

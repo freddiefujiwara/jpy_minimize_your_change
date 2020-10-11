@@ -30,7 +30,8 @@ class Input extends StatelessWidget {
                               keyboardType: TextInputType.number,
                               maxLines: 1,
                               inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.allow(RegExp(r"^\d+$")),
+                                FilteringTextInputFormatter.allow(
+                                    RegExp(r"^\d+$")),
                               ],
                               onChanged: (String number) {
                                 model.billing = int.parse(number);

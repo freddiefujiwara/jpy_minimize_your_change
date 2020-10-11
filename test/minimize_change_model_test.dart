@@ -181,7 +181,6 @@ void main() {
         [0, 0, 0, 0, 0, 0, 0, 0, 0]
       ]);
 
-
       m.clear();
       m.billing = 9;
 

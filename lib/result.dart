@@ -16,10 +16,11 @@ class Result extends StatelessWidget {
           body: Consumer<MinimizeChangeModel>(builder: (context, model, child) {
             final formatter = NumberFormat("#,###");
             List<List<int>> result = model.minimumPays();
-            if(model.sum(bills:result[0]) > model.sum()){
-              Navigator.of(context)
-                  .popUntil(ModalRoute.withName('/'));
-              return SafeArea(child: null,);
+            if (model.sum(bills: result[0]) > model.sum()) {
+              Navigator.of(context).popUntil(ModalRoute.withName('/'));
+              return SafeArea(
+                child: null,
+              );
             }
             return SafeArea(
               child: Container(

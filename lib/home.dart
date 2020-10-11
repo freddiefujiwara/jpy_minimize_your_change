@@ -11,7 +11,7 @@ class Home extends StatelessWidget {
         create: (_) => MinimizeChangeModel(),
         child: Scaffold(
             appBar: AppBar(
-              title: Text('ステップ1:おさいふにいくらある？'),
+              title: Text('ステップ1:おサイフにいくらある？'),
             ),
             body:
                 Consumer<MinimizeChangeModel>(builder: (context, model, child) {

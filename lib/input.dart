@@ -27,6 +27,7 @@ class Input extends StatelessWidget {
                           children: [
                             new TextField(
                               decoration: new InputDecoration(labelText: "金額"),
+                              autofocus: true,
                               keyboardType: TextInputType.number,
                               maxLines: 1,
                               inputFormatters: <TextInputFormatter>[
@@ -45,6 +46,7 @@ class Input extends StatelessWidget {
                                   color: Colors.white,
                                   textColor: Colors.black,
                                   onPressed: () {
+                                    model.billing = 0;
                                     Navigator.popUntil(
                                         context, ModalRoute.withName("/"));
                                   },

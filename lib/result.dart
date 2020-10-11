@@ -265,7 +265,7 @@ class Result extends StatelessWidget {
                                   },
                                 ),
                                 RaisedButton(
-                                  child: Text("支払う！"),
+                                  child: Text("はらう!"),
                                   color: Colors.white,
                                   textColor: Colors.black,
                                   onPressed: () {

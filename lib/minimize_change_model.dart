@@ -68,6 +68,19 @@ class _MinimizeChangeData {
     return sum;
   }
 
+  Future remove() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove('one');
+    prefs.remove('five');
+    prefs.remove('ten');
+    prefs.remove('fifty');
+    prefs.remove('oneHundred');
+    prefs.remove('fiveHundreds');
+    prefs.remove('oneThousand');
+    prefs.remove('fiveThousands');
+    prefs.remove('tenThousands');
+  }
+
   Future save() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setInt('one', this._bills[Bill.one.index]);
@@ -83,15 +96,26 @@ class _MinimizeChangeData {
 
   Future restore() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    this._bills[Bill.one.index] = prefs.getInt('one');
-    this._bills[Bill.five.index] = prefs.getInt('five');
-    this._bills[Bill.ten.index] = prefs.getInt('ten');
-    this._bills[Bill.fifty.index] = prefs.getInt('fifty');
-    this._bills[Bill.oneHundred.index] = prefs.getInt('oneHundred');
-    this._bills[Bill.fiveHundreds.index] = prefs.getInt('fiveHundreds');
-    this._bills[Bill.oneThousand.index] = prefs.getInt('oneThousand');
-    this._bills[Bill.fiveThousands.index] = prefs.getInt('fiveThousands');
-    this._bills[Bill.tenThousands.index] = prefs.getInt('tenThousands');
+    this._bills[Bill.one.index] =
+        prefs.getInt('one') == null ? 0 : prefs.getInt('one');
+    this._bills[Bill.five.index] =
+        prefs.getInt('five') == null ? 0 : prefs.getInt('five');
+    this._bills[Bill.ten.index] =
+        prefs.getInt('ten') == null ? 0 : prefs.getInt('ten');
+    this._bills[Bill.fifty.index] =
+        prefs.getInt('fifty') == null ? 0 : prefs.getInt('fifty');
+    this._bills[Bill.oneHundred.index] =
+        prefs.getInt('oneHundred') == null ? 0 : prefs.getInt('oneHundred');
+    this._bills[Bill.fiveHundreds.index] =
+        prefs.getInt('fiveHundreds') == null ? 0 : prefs.getInt('fiveHundreds');
+    this._bills[Bill.oneThousand.index] =
+        prefs.getInt('oneThousand') == null ? 0 : prefs.getInt('oneThousand');
+    this._bills[Bill.fiveThousands.index] =
+        prefs.getInt('fiveThousands') == null
+            ? 0
+            : prefs.getInt('fiveThousands');
+    this._bills[Bill.tenThousands.index] =
+        prefs.getInt('tenThousands') == null ? 0 : prefs.getInt('tenThousands');
   }
 
   List<List<int>> allSubsetsCanBePaid() {
@@ -206,6 +230,7 @@ class MinimizeChangeModel extends ChangeNotifier {
   }
 
   bool canPay() => this._minimizeChangeData.canPay();
+  Future remove() async => await this._minimizeChangeData.remove();
   Future save() async => await this._minimizeChangeData.save();
   Future restore() async {
     await this._minimizeChangeData.restore();

@@ -27,175 +27,211 @@ class Result extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                RaisedButton(
-                                    child: Text("10,000円"),
+                            Visibility(
+                              visible: result[0][8] != 0,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  RaisedButton(
+                                      child: Text("10,000円"),
+                                      color: Colors.grey,
+                                      textColor: Colors.white,
+                                      onPressed: () {}),
+                                  Text("${result[0][8]} 枚"),
+                                ],
+                              ),
+                            ),
+                            Visibility(
+                              visible: result[0][7] != 0,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  RaisedButton(
+                                    child: Text("5,000円"),
                                     color: Colors.grey,
                                     textColor: Colors.white,
-                                    onPressed: () {}),
-                                Text("${result[0][8]} 枚"),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                RaisedButton(
-                                  child: Text("5,000円"),
-                                  color: Colors.grey,
-                                  textColor: Colors.white,
-                                  onPressed: () {},
-                                ),
-                                Text("${result[0][7]} 枚"),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                RaisedButton(
-                                  child: Text("1,000円"),
-                                  color: Colors.grey,
-                                  textColor: Colors.white,
-                                  onPressed: () {},
-                                ),
-                                Text("${result[0][6]} 枚"),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                ButtonTheme(
-                                  minWidth: 50.0,
-                                  height: 50.0,
-                                  child: RaisedButton(
-                                    child: Text("500"),
-                                    textColor: Colors.white,
-                                    color: Colors.grey,
-                                    shape: CircleBorder(
-                                      side: BorderSide(
-                                        color: Colors.black,
-                                        width: 1.0,
-                                        style: BorderStyle.solid,
-                                      ),
-                                    ),
                                     onPressed: () {},
                                   ),
-                                ),
-                                Text("${result[0][5]} 枚"),
-                              ],
+                                  Text("${result[0][7]} 枚"),
+                                ],
+                              ),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                ButtonTheme(
-                                  minWidth: 40.0,
-                                  height: 40.0,
-                                  child: RaisedButton(
-                                    child: Text("100"),
+                            Visibility(
+                              visible: result[0][6] != 0,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  RaisedButton(
+                                    child: Text("1,000円"),
                                     color: Colors.grey,
                                     textColor: Colors.white,
-                                    shape: CircleBorder(
-                                      side: BorderSide(
-                                        color: Colors.black,
-                                        width: 1.0,
-                                        style: BorderStyle.solid,
-                                      ),
-                                    ),
                                     onPressed: () {},
                                   ),
-                                ),
-                                Text("${result[0][4]} 枚"),
-                              ],
+                                  Text("${result[0][6]} 枚"),
+                                ],
+                              ),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                ButtonTheme(
-                                  minWidth: 35.0,
-                                  height: 35.0,
-                                  child: RaisedButton(
-                                    child: Text("50"),
-                                    color: Colors.grey,
-                                    textColor: Colors.white,
-                                    shape: CircleBorder(
-                                      side: BorderSide(
-                                        color: Colors.black,
-                                        width: 1.0,
-                                        style: BorderStyle.solid,
+                            Visibility(
+                              visible: result[0][5] != 0,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ButtonTheme(
+                                    minWidth: 50.0,
+                                    height: 50.0,
+                                    child: RaisedButton(
+                                      child: Text("500"),
+                                      textColor: Colors.white,
+                                      color: Colors.grey,
+                                      shape: CircleBorder(
+                                        side: BorderSide(
+                                          color: Colors.black,
+                                          width: 1.0,
+                                          style: BorderStyle.solid,
+                                        ),
                                       ),
+                                      onPressed: () {},
                                     ),
-                                    onPressed: () {},
                                   ),
-                                ),
-                                Text("${result[0][3]} 枚"),
-                              ],
+                                  Text("${result[0][5]} 枚"),
+                                ],
+                              ),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                ButtonTheme(
-                                  minWidth: 35.0,
-                                  height: 35.0,
-                                  child: RaisedButton(
-                                    child: Text("10"),
-                                    color: Colors.orange,
-                                    shape: CircleBorder(
-                                      side: BorderSide(
-                                        color: Colors.black,
-                                        width: 1.0,
-                                        style: BorderStyle.solid,
+                            Visibility(
+                              visible: result[0][4] != 0,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ButtonTheme(
+                                    minWidth: 40.0,
+                                    height: 40.0,
+                                    child: RaisedButton(
+                                      child: Text("100"),
+                                      color: Colors.grey,
+                                      textColor: Colors.white,
+                                      shape: CircleBorder(
+                                        side: BorderSide(
+                                          color: Colors.black,
+                                          width: 1.0,
+                                          style: BorderStyle.solid,
+                                        ),
                                       ),
+                                      onPressed: () {},
                                     ),
-                                    onPressed: () {},
                                   ),
-                                ),
-                                Text("${result[0][2]} 枚"),
-                              ],
+                                  Text("${result[0][4]} 枚"),
+                                ],
+                              ),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                ButtonTheme(
-                                  minWidth: 30.0,
-                                  height: 30.0,
-                                  child: RaisedButton(
-                                    child: Text("5"),
-                                    color: Colors.yellow,
-                                    shape: CircleBorder(
-                                      side: BorderSide(
-                                        color: Colors.black,
-                                        width: 1.0,
-                                        style: BorderStyle.solid,
+                            Visibility(
+                              visible: result[0][3] != 0,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ButtonTheme(
+                                    minWidth: 35.0,
+                                    height: 35.0,
+                                    child: RaisedButton(
+                                      child: Text("50"),
+                                      color: Colors.grey,
+                                      textColor: Colors.white,
+                                      shape: CircleBorder(
+                                        side: BorderSide(
+                                          color: Colors.black,
+                                          width: 1.0,
+                                          style: BorderStyle.solid,
+                                        ),
                                       ),
+                                      onPressed: () {},
                                     ),
-                                    onPressed: () {},
                                   ),
-                                ),
-                                Text("${result[0][1]} 枚"),
-                              ],
+                                  Text("${result[0][3]} 枚"),
+                                ],
+                              ),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                ButtonTheme(
-                                  minWidth: 30.0,
-                                  height: 30.0,
-                                  child: RaisedButton(
-                                    child: Text("1"),
-                                    color: Colors.white70,
-                                    shape: CircleBorder(
-                                      side: BorderSide(
-                                        color: Colors.black,
-                                        width: 1.0,
-                                        style: BorderStyle.solid,
+                            Visibility(
+                              visible: result[0][2] != 0,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ButtonTheme(
+                                    minWidth: 35.0,
+                                    height: 35.0,
+                                    child: RaisedButton(
+                                      child: Text("10"),
+                                      color: Colors.orange,
+                                      shape: CircleBorder(
+                                        side: BorderSide(
+                                          color: Colors.black,
+                                          width: 1.0,
+                                          style: BorderStyle.solid,
+                                        ),
                                       ),
+                                      onPressed: () {},
                                     ),
-                                    onPressed: () {},
                                   ),
-                                ),
-                                Text("${result[0][0]} 枚"),
-                              ],
+                                  Text("${result[0][2]} 枚"),
+                                ],
+                              ),
+                            ),
+                            Visibility(
+                              visible: result[0][1] != 0,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ButtonTheme(
+                                    minWidth: 30.0,
+                                    height: 30.0,
+                                    child: RaisedButton(
+                                      child: Text("5"),
+                                      color: Colors.yellow,
+                                      shape: CircleBorder(
+                                        side: BorderSide(
+                                          color: Colors.black,
+                                          width: 1.0,
+                                          style: BorderStyle.solid,
+                                        ),
+                                      ),
+                                      onPressed: () {},
+                                    ),
+                                  ),
+                                  Text("${result[0][1]} 枚"),
+                                ],
+                              ),
+                            ),
+                            Visibility(
+                              visible: result[0][0] != 0,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ButtonTheme(
+                                    minWidth: 30.0,
+                                    height: 30.0,
+                                    child: RaisedButton(
+                                      child: Text("1"),
+                                      color: Colors.white70,
+                                      shape: CircleBorder(
+                                        side: BorderSide(
+                                          color: Colors.black,
+                                          width: 1.0,
+                                          style: BorderStyle.solid,
+                                        ),
+                                      ),
+                                      onPressed: () {},
+                                    ),
+                                  ),
+                                  Text("${result[0][0]} 枚"),
+                                ],
+                              ),
                             ),
                             Row(
                                 mainAxisAlignment:

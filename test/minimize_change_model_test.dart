@@ -160,6 +160,17 @@ void main() {
       ]);
     });
     test('save&restore', () async {
+      await m.remove();
+      await m.restore();
+      expect(m.numberOfBills(Bill.tenThousands), 0);
+      expect(m.numberOfBills(Bill.fiveThousands), 0);
+      expect(m.numberOfBills(Bill.oneThousand), 0);
+      expect(m.numberOfBills(Bill.fiveHundreds), 0);
+      expect(m.numberOfBills(Bill.oneHundred), 0);
+      expect(m.numberOfBills(Bill.fifty), 0);
+      expect(m.numberOfBills(Bill.ten), 0);
+      expect(m.numberOfBills(Bill.five), 0);
+      expect(m.numberOfBills(Bill.one), 0);
       m.billing = 22665;
       m.increment(Bill.tenThousands, number: 1);
       m.increment(Bill.fiveThousands, number: 2);

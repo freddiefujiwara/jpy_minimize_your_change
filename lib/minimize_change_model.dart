@@ -162,7 +162,7 @@ class _MinimizeChangeData {
   List<int> _cheatMinimumPay() {
     int remain = this._billing;
     List<int> answerArray = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-    final column = [1,10,100,100];
+    final column = [1, 10, 100, 100];
     for (var i = 0; i < 4; i++) {
       int targetNum = (remain % (10 * column[i]) / column[i]).ceil();
       if (targetNum == 10) {
@@ -184,13 +184,33 @@ class _MinimizeChangeData {
   }
 
   List<List<int>> minimumPays() {
-    final int currentBills = this.totalNumberOfBills();
     List<int> bestPay = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     List<int> bestChange = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-    if (currentBills > 13) { // too many candidates
+    // exactly same as perfect
+    List<int> perfectPay = this.changeToBills(this._billing);
+    if (this._bills[Bill.one.index] >= perfectPay[Bill.one.index] &&
+        this._bills[Bill.five.index] >= perfectPay[Bill.five.index] &&
+        this._bills[Bill.ten.index] >= perfectPay[Bill.ten.index] &&
+        this._bills[Bill.fifty.index] >= perfectPay[Bill.fifty.index] &&
+        this._bills[Bill.oneHundred.index] >=
+            perfectPay[Bill.oneHundred.index] &&
+        this._bills[Bill.fiveHundreds.index] >=
+            perfectPay[Bill.fiveHundreds.index] &&
+        this._bills[Bill.oneThousand.index] >=
+            perfectPay[Bill.oneThousand.index] &&
+        this._bills[Bill.fiveThousands.index] >=
+            perfectPay[Bill.fiveThousands.index] &&
+        this._bills[Bill.tenThousands.index] >=
+            perfectPay[Bill.tenThousands.index]) {
+      return [perfectPay, bestChange];
+    }
+    final int currentBills = this.totalNumberOfBills();
+    if (currentBills > 20) {
+      // too many candidates
       bestPay = this._cheatMinimumPay();
       bestChange = this.changeToBills(this.sum(bills: bestPay) - this._billing);
     } else {
+      // best pairs
       int minimumBills = -1;
       this.allSubsetsCanBePaid().forEach((s) {
         final List<int> changes =
@@ -204,6 +224,13 @@ class _MinimizeChangeData {
         }
       });
     }
+    // refiled
+    Bill.values.forEach((b) {
+      if (bestPay[b.index] - bestChange[b.index] >= 0) {
+        bestPay[b.index] = bestPay[b.index] - bestChange[b.index];
+        bestChange[b.index] = 0;
+      }
+    });
     return [bestPay, bestChange];
   }
 

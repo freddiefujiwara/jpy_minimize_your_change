@@ -12,10 +12,10 @@ const RESOURCES = {
 "ezgif.com-video-to-gif.gif": "f205c4f818aa9ffaf1b6dbf1a21dceba",
 "main.dart.js": "65d881ff6f521e0df135c2ea26c3961e",
 "manifest.json": "542e8ba08f667b3261a2b5b95b3a2db4",
-"index.html": "0761cbc4627b057c40fd63417d372c60",
-"/": "0761cbc4627b057c40fd63417d372c60",
+"index.html": "ea54fc8eb427c5deec797e0fc5bb0205",
+"/": "ea54fc8eb427c5deec797e0fc5bb0205",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
-"icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1"
+"icons/Icon-512.png": "adb37dcc966d2d1970198f899fd137fd"
 };
 
 // The application shell files that are downloaded before a service worker can

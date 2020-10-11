@@ -7,6 +7,7 @@ A tool to minimize your change.
 
 ![Demo](https://freddiefujiwara.com/jpy_minimize_your_change/ezgif.com-video-to-gif.gif)
 
+![QR code](https://freddiefujiwara.com/jpy_minimize_your_change/747A05A1-A72F-4376-9A10-F14076063934.png)
 ## Getting Started
 
 This project is a starting point for a Flutter application.

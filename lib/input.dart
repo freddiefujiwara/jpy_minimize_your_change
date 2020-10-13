@@ -59,7 +59,21 @@ class Input extends StatelessWidget {
                                     if (model.canPay() && model.billing > 0) {
                                       Navigator.of(context)
                                           .pushNamed('/result');
+                                      return;
                                     }
+                                    showDialog(
+                                        context: context,
+                                        child: AlertDialog(
+                                          title: Text("つぎへいけません!"),
+                                          content: Text("金額をただしくいれてね"),
+                                          actions: <Widget>[
+                                            FlatButton(
+                                              child: Text("OK"),
+                                              onPressed: () =>
+                                                  Navigator.pop(context),
+                                            ),
+                                          ],
+                                        ));
                                   },
                                 ),
                               ],

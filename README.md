@@ -4,8 +4,10 @@
 A tool to minimize your change.
 
 ## DEMO
-[DEMO](https://freddiefujiwara.com/jpy_minimize_your_change)
+- [Try Web ver](https://freddiefujiwara.com/jpy_minimize_your_change)
+- [Try Android ver](https://freddiefujiwara.com/jpy_minimize_your_change/apks/app-release.apk)
 
+## How to use
 ![DEMO](https://freddiefujiwara.com/Osaifu-Minimalist/images/demo.gif)
 
 ![QRCode](https://freddiefujiwara.com/Osaifu-Minimalist/images/IMG_8695.jpg)
